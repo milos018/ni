@@ -18,6 +18,7 @@ const yarn = {
   'execute': 'npx {0}',
   'uninstall': 'yarn remove {0}',
   'global_uninstall': 'yarn global remove {0}',
+  'init': 'yarn init',
 }
 const pnpm = {
   'agent': 'pnpm {0}',
@@ -45,6 +46,7 @@ const bun = {
   'execute': 'bunx {0}',
   'uninstall': 'bun remove {0}',
   'global_uninstall': 'bun remove -g {0}',
+  'init': 'bun init',
 }
 
 export const AGENTS = {
@@ -82,7 +84,7 @@ export const AGENTS = {
   'bun': bun,
 }
 
-export type Agent = any
+export type Agent = keyof typeof AGENTS
 export type Command = keyof typeof AGENTS.npm
 
 export const agents = Object.keys(AGENTS) as Agent[]
