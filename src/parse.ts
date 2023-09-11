@@ -2,6 +2,7 @@ import type { Agent, Command } from './agents'
 import { AGENTS } from './agents'
 import { exclude } from './utils'
 import type { Runner } from './runner'
+import ts from 'typescript';
 
 export class UnsupportedCommand extends Error {
   constructor({ agent, command }: { agent: Agent; command: Command }) {
@@ -17,6 +18,8 @@ export function getCommand(
   if (!(agent in AGENTS))
     throw new Error(`Unsupported agent "${agent}"`)
 
+  // @ts-ignore not sure why this is needed
+  // @ts-expect-error somehow this is not working
   const c = AGENTS[agent][command]
 
   if (typeof c === 'function')
@@ -85,4 +88,8 @@ export const parseNlx = <Runner>((agent, args) => {
 
 export const parseNa = <Runner>((agent, args) => {
   return getCommand(agent, 'agent', args)
+})
+
+export const parseNinit = <Runner>((agent, args) => {
+  return getCommand(agent, 'init', args)
 })

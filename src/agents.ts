@@ -31,6 +31,7 @@ const pnpm = {
   'execute': 'pnpm dlx {0}',
   'uninstall': 'pnpm remove {0}',
   'global_uninstall': 'pnpm remove --global {0}',
+  'init': 'pnpm init',
 }
 const bun = {
   'agent': 'bun {0}',
@@ -59,6 +60,7 @@ export const AGENTS = {
     'execute': 'npx {0}',
     'uninstall': 'npm uninstall {0}',
     'global_uninstall': 'npm uninstall -g {0}',
+    'init': 'npm init',
   },
   'yarn': yarn,
   'yarn@berry': {
@@ -80,7 +82,7 @@ export const AGENTS = {
   'bun': bun,
 }
 
-export type Agent = keyof typeof AGENTS
+export type Agent = any
 export type Command = keyof typeof AGENTS.npm
 
 export const agents = Object.keys(AGENTS) as Agent[]
